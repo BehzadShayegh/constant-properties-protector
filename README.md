@@ -1,4 +1,4 @@
-# Abstract Object Decorator Package
+# Constant Properties Protector Package
 
 With the help of this module, you can protect some of properties in a class. Protecting means avoiding to change them but keep them in publicly available.
 
