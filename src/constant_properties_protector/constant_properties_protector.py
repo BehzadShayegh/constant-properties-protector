@@ -1,6 +1,9 @@
 class CPP:
     def __init__(self, protecteds):
         self.__protecteds = protecteds
+
+    def protect_properties(self, properties):
+        self.__protecteds += properties
         
     def __getattribute__(self, attribute):
         if attribute in ['__getattribute__','_CPP__protecteds','__dict__']:
