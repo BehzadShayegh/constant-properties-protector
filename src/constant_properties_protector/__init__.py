@@ -1,1 +1,1 @@
-from .constant_properties import ConstantProperties
+from .constant_properties_protector import CPP
