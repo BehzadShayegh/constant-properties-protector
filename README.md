@@ -42,9 +42,10 @@ b.new_protected_value += 2
 NOTE: 
 
 * You can use `CPP` along with other base classes.
-* `CPP` will override `__getattribute__` and `__setattr__`. So where these functions somehow are overrided or are going to be overridden, don't use it .
 * Use `_` first of the protected property name to get fully access to it.
 * Use `protect_properties` function to add to protected properties. If you use inheritance, NEVER inherit from `CPP` more than once. Use this function instead.
+* `CPP` will override `__getattribute__` and `__setattr__`. So where these functions somehow are overrided or are going to be overridden, DON'T use it.
+* ALWAYS call `CPP.__init__` as the first line of your class's `__init__` (because it will override `__getattribute__`).
 
 ## Installation
 ```pip install constant-properties-protector```
