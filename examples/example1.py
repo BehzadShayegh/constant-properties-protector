@@ -1,11 +1,9 @@
 from constant_properties_protector import CPP
 
-class A(CPP):
+class A:
     def __init__(self):
-        CPP.__init__(self, protecteds=[
-            'initialized_protected',
-            'uninitialized_protected'
-        ])
+        CPP.protect(self, 'initialized_protected')
+        CPP.protect(self, 'uninitialized_protected')
         self._initialized_protected = 12
         
 a = A()
@@ -22,9 +20,7 @@ a.uninitialized_protected = 10
 class B(A):
     def __init__(self):
         super().__init__()
-        self.protect_properties([
-            'new_protected_value'
-        ])
+        CPP.protect(self, 'new_protected_value')
         self._new_protected_value = 26
 
 b = B()

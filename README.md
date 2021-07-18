@@ -5,12 +5,10 @@ With the help of this module, you can protect some of properties in a class. Pro
 ```python
 from constant_properties_protector import CPP
 
-class A(CPP):
+class A:
     def __init__(self):
-        CPP.__init__(self, protecteds=[
-            'initialized_protected',
-            'uninitialized_protected'
-        ])
+        CPP.protect(self, 'initialized_protected')
+        CPP.protect(self, 'uninitialized_protected')
         self._initialized_protected = 12
         
 a = A()
@@ -27,9 +25,7 @@ a.uninitialized_protected = 10
 class B(A):
     def __init__(self):
         super().__init__()
-        self.protect_properties([
-            'new_protected_value'
-        ])
+        CPP.protect(self, 'new_protected_value')
         self._new_protected_value = 26
 
 b = B()
@@ -41,11 +37,10 @@ b.new_protected_value += 2
 
 NOTE: 
 
-* You can use `CPP` along with other base classes.
+* There is no need to inherit from CPP.
 * Use `_` first of the protected property name to get fully access to it.
-* Use `protect_properties` function to add to protected properties. If you use inheritance, NEVER inherit from `CPP` more than once. Use this function instead.
-* `CPP` will override `__getattribute__` and `__setattr__`. So where these functions somehow are overrided or are going to be overridden, DON'T use it.
-* ALWAYS call `CPP.__init__` as the first line of your class's `__init__` (because it will override `__getattribute__`).
+* Use `protect` function to add to protected properties.
+* CPP will defaine python properties for your class. So it affects on the class not the instance. DON'T use CPP to protect a property in runtime. Use it to define protected values for all instanses of a class.
 
 ## Installation
 ```pip install constant-properties-protector```

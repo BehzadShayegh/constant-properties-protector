@@ -1,19 +1,11 @@
 class CPP:
-    def __init__(self, protecteds):
-        self.__protecteds = protecteds
+    @staticmethod
+    def __protection_exception(prop):
+        raise Exception(f'Can not modify constant property: {prop}')
 
-    def protect_properties(self, properties):
-        self.__protecteds += properties
-        
-    def __getattribute__(self, attribute):
-        if attribute in ['__getattribute__','_CPP__protecteds','__dict__']:
-            return object.__getattribute__(self, attribute)
-        if attribute in self.__protecteds:
-            return object.__getattribute__(self, '_'+attribute)
-        return object.__getattribute__(self, attribute)
-        
-    def __setattr__(self, attribute, value):
-        if '_CPP__protecteds' in self.__dict__:
-            if attribute in self.__protecteds:
-                raise Exception(f'Can not modify constant property: {attribute}')
-        return object.__setattr__(self, attribute, value)
+    @staticmethod
+    def protect(obj, prop):
+        setattr(obj.__class__, prop, property(
+            lambda self: getattr(self, '_'+prop),
+            lambda self, value: CPP.__protection_exception(prop)
+        ))
