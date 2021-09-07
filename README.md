@@ -1,6 +1,6 @@
 # Constant Properties Protector Package
 
-With the help of this module, you can protect some of properties in a class. Protecting means avoiding to change them but keep them publicly available.
+With the help of this module, you can protect some of the properties in a class. Protecting means avoiding to change them but keep them publicly available.
 
 ```python
 from constant_properties_protector import CPP
@@ -38,9 +38,9 @@ b.new_protected_value += 2
 NOTE: 
 
 * There is no need to inherit from CPP.
-* Use `_` first of the protected property name to get fully access to it.
+* Use `_` first of the protected property name to get full access to it.
 * Use `protect` function to add to protected properties.
-* CPP will defaine python properties for your class. So it affects on the class not the instance. DON'T use CPP to protect a property in runtime. Use it to define protected values for all instanses of a class.
+* CPP will define python properties for your class. So it affects the class, not the instance. DON'T use CPP to protect property in runtime. Use it to define protected values for all instances of a class.
 
 ## Installation
 ```pip install constant-properties-protector```
